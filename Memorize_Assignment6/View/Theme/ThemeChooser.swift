@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct ThemeChooserView: View {
+struct ThemeChooser: View {
     @EnvironmentObject var store: ThemeStore
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @State private var editMode: EditMode = .inactive
 
     var body: some View {
@@ -42,8 +43,8 @@ struct ThemeChooserView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("+") {
-                        // FIXME: create a theme
-                        print("add")
+                        store.insertTheme(named: "New", numberOfPairOfCards: 2, color: RGBAColor(color: colorScheme == .light ? Color.black : Color.white))
+                        themeToEdit = store.theme(at: 0)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -89,6 +90,6 @@ struct ThemeChooserView: View {
 
 struct ThemeChooserView_Previews: PreviewProvider {
     static var previews: some View {
-        ThemeChooserView().environmentObject(ThemeStore(named: "previewStore"))
+        ThemeChooser().environmentObject(ThemeStore(named: "previewStore"))
     }
 }

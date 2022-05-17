@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         let themeStore = ThemeStore(named: "memorizeThemeStore")
-        ThemeChooserView().environmentObject(themeStore)
+        ThemeChooser().environmentObject(themeStore)
     }
 }
 
