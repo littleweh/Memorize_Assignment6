@@ -49,6 +49,9 @@ struct ThemeEditor: View {
         Section(header: Text("# of pair of cards")) {
             TextField("number of pair of cards", text: $cardPairNumberToUpdate)
                 .keyboardType(.numberPad)
+                .onAppear(perform: {
+                    cardPairNumberToUpdate = "\(theme.numberOfPairOfCards)"
+                })
                 .onChange(of: cardPairNumberToUpdate) { pairNumber in
                     updateCardPairNumber(Int(pairNumber))
                 }
@@ -98,6 +101,9 @@ struct ThemeEditor: View {
         Section(header: Text("color")) {
             VStack {
                 ColorPicker("choose a color", selection: $themeColor, supportsOpacity: true)
+                    .onAppear(perform: {
+                        themeColor = Color(rgbaColor: theme.color)
+                    })
                     .onChange(of: themeColor) { color in
                         theme.color = RGBAColor(color: color)
                     }
