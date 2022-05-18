@@ -21,6 +21,7 @@ enum EmojiGameTheme: Int, CaseIterable {
             return Theme(
                 name: "Vehicle",
                 emoji:"🚗🚓🚑🚒🛻🚚🚲🛵🏍🚝✈️🚀🛸🚁🚢⛴🚤🚖🛺🦽",
+                numberOfPairOfCards: 5,
                 color: RGBAColor(red: 0, green: 0, blue: 102, alpha: 1)
             )
         case .food:
@@ -34,24 +35,28 @@ enum EmojiGameTheme: Int, CaseIterable {
             return Theme(
                 name: "Faces",
                 emoji: "👶🏼👨🏾👩🏾‍🦱👩🏻‍🦰🧑🏻‍🦰👩🏽‍🦳🧑‍🦳👵🏼👳🏽👳🏻‍♂️🧔🏿👱🏿‍♀️",
+                numberOfPairOfCards: 0,
                 color: RGBAColor(red: 255, green: 255, blue: 0, alpha: 1)
             )
         case .flag:
             return Theme(
                 name: "Flags",
                 emoji: "🏳️‍🌈🏁🚩🇨🇫🇯🇵🇹🇼🇸🇿🇳🇪🇮🇸🇭🇺🇹🇰🇹🇱🇩🇯🇫🇷🇫🇮🇸🇸🇰🇷🇺🇸🏴󠁧󠁢󠁳󠁣󠁴󠁿🇭🇰",
+                numberOfPairOfCards: 10,
                 color: RGBAColor(red: 20, green: 20, blue: 20, alpha: 1)
             )
         case .occupation:
             return Theme(
                 name: "Job",
                 emoji:"👮🏽‍♀️👷🏾‍♀️💂🏻👩🏻‍⚕️🕵🏻‍♂️👨🏻‍🌾👩🏿‍🌾🧑🏽‍🎓👨🏻‍🍳👨🏽‍🎤🧑🏼‍🏫👨🏻‍🏭🧑🏻‍💼👩🏽‍🔬👩🏻‍🎨",
+                numberOfPairOfCards: 7,
                 color: RGBAColor(red: 0, green: 0, blue: 0, alpha: 1)
             )
         case .weather:
             return Theme(
                 name: "Weather",
                 emoji: "🌛🌜🌞🌙☀️🌤⛅️🌥☁️🌦🌧☃️❄️🌨🌩⛈☔️☂️💨🌈",
+                numberOfPairOfCards: 12,
                 color: RGBAColor(red: 122, green: 51, blue: 0, alpha: 1)
             )
         }

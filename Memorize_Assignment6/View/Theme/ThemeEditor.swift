@@ -44,23 +44,10 @@ struct ThemeEditor: View {
         }
     }
 
-    @State var cardPairNumberToUpdate = ""
     var cardNumberEditSection: some View {
         Section(header: Text("# of pair of cards")) {
-            TextField("number of pair of cards", text: $cardPairNumberToUpdate)
-                .keyboardType(.numberPad)
-                .onAppear(perform: {
-                    cardPairNumberToUpdate = "\(theme.numberOfPairOfCards)"
-                })
-                .onChange(of: cardPairNumberToUpdate) { pairNumber in
-                    updateCardPairNumber(Int(pairNumber))
-                }
+            Stepper("\(theme.numberOfPairOfCards) pairs of cards", value: $theme.numberOfPairOfCards, in: 0...theme.emojis.count, step: 1)
         }
-    }
-
-    private func updateCardPairNumber(_ number: Int?) {
-        guard let number = number else { return }
-        let _ = theme.updateNumberOfPairOfCards(number)
     }
 
     @State var emojisToAdd = ""
@@ -69,26 +56,23 @@ struct ThemeEditor: View {
         Section(header: Text("add Emojis")) {
             TextField("emojis to add", text: $emojisToAdd)
                 .onChange(of: emojisToAdd) { emojis in
-                    addEmojis(emojis)
+                    withAnimation {
+                        theme.appendEmojis(emojis)
+                    }
                 }
         }
     }
 
-    private func addEmojis(_ emojis: String) {
-        withAnimation {
-            theme.appendEmojis(emojis)
-        }
-    }
-
     var removeEmojiSection: some View {
-        // FIXME: remove emojis
         Section(header: Text("Remove emojis")) {
             let emojisArray = Array(theme.emojis)
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 40))]) {
                 ForEach(emojisArray, id: \.self) { emoji in
                     Text(emoji)
                         .onTapGesture {
-                            theme.removeEmoji(emoji)
+                            withAnimation {
+                                theme.removeEmoji(emoji)
+                            }
                         }
                 }
             }

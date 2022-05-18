@@ -14,7 +14,7 @@ struct Theme: Identifiable, Codable, Hashable {
     var numberOfPairOfCards: Int
     var color: RGBAColor
 
-    init(name: String, emoji: String?, numberOfPairOfCards: Int = 4, color: RGBAColor) {
+    init(name: String, emoji: String?, numberOfPairOfCards: Int, color: RGBAColor) {
         self.id = UUID()
         self.name = name
         self.color = color
@@ -25,12 +25,6 @@ struct Theme: Identifiable, Codable, Hashable {
     mutating func appendEmojis(_ emojis: String?) {
         let newEmojis = emojis?.setOfEmojiElement ?? []
         self.emojis = self.emojis.union(newEmojis)
-    }
-
-    mutating func updateNumberOfPairOfCards(_ number: Int) -> Bool {
-        guard number > 2, number < emojis.count else { return false }
-        self.numberOfPairOfCards = number
-        return true
     }
 
     mutating func removeEmoji(_ emoji: String) {
